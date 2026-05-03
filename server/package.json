@@ -1,0 +1,39 @@
+{
+  "name": "country-of-towers-server",
+  "version": "1.0.0",
+  "description": "Colyseus game server for Country of Towers",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "jest",
+    "deploy": "npm run build && railway up"
+  },
+  "keywords": [
+    "colyseus",
+    "game-server",
+    "card-game"
+  ],
+  "author": "Trivikrama",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "@colyseus/monitor": "^0.17.8",
+    "@colyseus/redis-driver": "^0.17.7",
+    "@colyseus/schema": "^4.0.21",
+    "colyseus": "^0.17.10",
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.6.0",
+    "jest": "^30.3.0",
+    "ts-jest": "^29.4.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  }
+}

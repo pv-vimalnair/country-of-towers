@@ -1,0 +1,1893 @@
+{
+    "secret_cave": {
+        "id": "secret_cave",
+        "name": "Secret Cave",
+        "color": "red",
+        "cost": {
+            "ore": 8
+        },
+        "effects": [
+            {
+                "type": "ADD_MONASTERY",
+                "value": 1
+            },
+            {
+                "type": "PLAY_AGAIN"
+            }
+        ],
+        "description": "+1 Monastery; Play Again",
+        "flavor": "A hidden grotto whispers of ancient riches."
+    },
+    "quartz": {
+        "id": "quartz",
+        "name": "Quartz",
+        "color": "blue",
+        "cost": {
+            "mana": 1
+        },
+        "effects": [
+            {
+                "type": "ADD_TOWER",
+                "value": 1
+            },
+            {
+                "type": "PLAY_AGAIN"
+            }
+        ],
+        "description": "+1 Tower; Play Again",
+        "flavor": "Clear as ice, hard as faith."
+    },
+    "earthquake": {
+        "id": "earthquake",
+        "name": "Earthquake",
+        "color": "red",
+        "cost": {
+            "ore": 0
+        },
+        "effects": [
+            {
+                "type": "LOSE_MINE",
+                "value": 1,
+                "allPlayers": true
+            }
+        ],
+        "description": "All players lose 1 Mine",
+        "flavor": "The mountain itself turns against you."
+    },
+    "emerald": {
+        "id": "emerald",
+        "name": "Emerald",
+        "color": "blue",
+        "cost": {
+            "mana": 6
+        },
+        "effects": [
+            {
+                "type": "ADD_TOWER",
+                "value": 8
+            }
+        ],
+        "description": "+8 Tower",
+        "flavor": "Green fire trapped in crystal."
+    },
+    "crusher": {
+        "id": "crusher",
+        "name": "Crusher",
+        "color": "green",
+        "cost": {
+            "troops": 5
+        },
+        "effects": [
+            {
+                "type": "DAMAGE",
+                "value": 6
+            }
+        ],
+        "description": "Deal 6 damage",
+        "flavor": "Brute force solves everything."
+    },
+    "jewelry": {
+        "id": "jewelry",
+        "name": "Jewelry",
+        "color": "blue",
+        "cost": {
+            "mana": 0
+        },
+        "effects": [
+            {
+                "type": "IF_TOWER_LT_OPPONENT",
+                "value": 2,
+                "elseValue": 1
+            }
+        ],
+        "description": "If Tower < opponent: +2; else +1",
+        "flavor": "Adornment fit for a king—or a spellcaster."
+    },
+    "bastion": {
+        "id": "bastion",
+        "name": "Bastion",
+        "color": "red",
+        "cost": {
+            "ore": 13
+        },
+        "effects": [
+            {
+                "type": "ADD_WALL",
+                "value": 12
+            }
+        ],
+        "description": "+12 Wall",
+        "flavor": "Stone and iron, unyielding."
+    },
+    "help_in_work": {
+        "id": "help_in_work",
+        "name": "Help in Work",
+        "color": "blue",
+        "cost": {
+            "mana": 0
+        },
+        "effects": [
+            {
+                "type": "ADD_TOWER",
+                "value": 7
+            },
+            {
+                "type": "LOSE_TROOPS",
+                "value": 10
+            }
+        ],
+        "description": "+7 Tower; you lose 10 Troops",
+        "flavor": "Many hands make light work, but at what cost?"
+    },
+    "sapphire": {
+        "id": "sapphire",
+        "name": "Sapphire",
+        "color": "blue",
+        "cost": {
+            "mana": 10
+        },
+        "effects": [
+            {
+                "type": "ADD_TOWER",
+                "value": 11
+            }
+        ],
+        "description": "+11 Tower",
+        "flavor": "The deep blue holds the sky's memory."
+    },
+    "matrix": {
+        "id": "matrix",
+        "name": "Matrix",
+        "color": "blue",
+        "cost": {
+            "mana": 6
+        },
+        "effects": [
+            {
+                "type": "ADD_MONASTERY",
+                "value": 1
+            },
+            {
+                "type": "ADD_TOWER",
+                "value": 3
+            },
+            {
+                "type": "ENEMY_TOWER_MINUS",
+                "value": 1
+            }
+        ],
+        "description": "+1 Monastery, +3 Tower, +1 enemy Tower",
+        "flavor": "Reality bends where mana pools."
+    },
+    "spearman": {
+        "id": "spearman",
+        "name": "Spearman",
+        "color": "green",
+        "cost": {
+            "troops": 2
+        },
+        "effects": [
+            {
+                "type": "DAMAGE",
+                "value": 3
+            },
+            {
+                "type": "DAMAGE_IF_WALL_GT",
+                "value": 1,
+                "elseValue": 0
+            }
+        ],
+        "description": "Deal 3 if your Wall > opponent's; else 2",
+        "flavor": "The point of a spear needs no introduction."
+    },
+    "lucky_coin": {
+        "id": "lucky_coin",
+        "name": "Lucky Coin",
+        "color": "red",
+        "cost": {
+            "ore": 0
+        },
+        "effects": [
+            {
+                "type": "ADD_ORE",
+                "value": 2
+            },
+            {
+                "type": "ADD_MANA",
+                "value": 2
+            },
+            {
+                "type": "PLAY_AGAIN"
+            }
+        ],
+        "description": "+2 Ore, +2 Mana; Play Again",
+        "flavor": "Found in the pocket of a dead adventurer."
+    },
+    "overtime": {
+        "id": "overtime",
+        "name": "Overtime",
+        "color": "red",
+        "cost": {
+            "ore": 4
+        },
+        "effects": [
+            {
+                "type": "ADD_ORE",
+                "value": 4
+            },
+            {
+                "type": "ADD_TROOPS",
+                "value": 4
+            }
+        ],
+        "description": "+4 Ore; +4 Troops",
+        "flavor": "Sleep is for the weak and the defeated."
+    },
+    "fortification": {
+        "id": "fortification",
+        "name": "Fortification",
+        "color": "red",
+        "cost": {
+            "ore": 5
+        },
+        "effects": [
+            {
+                "type": "ADD_WALL",
+                "value": 5
+            },
+            {
+                "type": "ADD_BARRACKS",
+                "value": 2
+            }
+        ],
+        "description": "+5 Wall, +2 Barracks",
+        "flavor": "Walls are the bones of defense."
+    },
+    "monastery_card": {
+        "id": "monastery_card",
+        "name": "Monastery",
+        "color": "blue",
+        "cost": {
+            "mana": 15
+        },
+        "effects": [
+            {
+                "type": "ADD_TOWER",
+                "value": 10
+            },
+            {
+                "type": "ADD_WALL",
+                "value": 5
+            },
+            {
+                "type": "ADD_TROOPS",
+                "value": 5
+            }
+        ],
+        "description": "+10 Tower, +5 Wall; +5 Troops",
+        "flavor": "Chanting echoes through marble halls."
+    },
+    "goblins": {
+        "id": "goblins",
+        "name": "Goblins",
+        "color": "green",
+        "cost": {
+            "troops": 1
+        },
+        "effects": [
+            {
+                "type": "DAMAGE",
+                "value": 4
+            },
+            {
+                "type": "LOSE_MANA",
+                "value": 3
+            }
+        ],
+        "description": "Deal 4 damage; you lose 3 Mana",
+        "flavor": "Small, mean, and surprisingly organized."
+    },
+    "succubi": {
+        "id": "succubi",
+        "name": "Succubi",
+        "color": "green",
+        "cost": {
+            "troops": 14
+        },
+        "effects": [
+            {
+                "type": "DAMAGE_TOWER",
+                "value": 5
+            },
+            {
+                "type": "LOSE_TROOPS",
+                "value": 6
+            }
+        ],
+        "description": "Deal 5 to enemy Tower; opponent -6 Troops",
+        "flavor": "Temptation wears many faces."
+    },
+    "werewolf": {
+        "id": "werewolf",
+        "name": "Werewolf",
+        "color": "green",
+        "cost": {
+            "troops": 9
+        },
+        "effects": [
+            {
+                "type": "DAMAGE",
+                "value": 9
+            }
+        ],
+        "description": "Deal 9 damage",
+        "flavor": "The full moon brings out the beast within."
+    },
+    "full_moon": {
+        "id": "full_moon",
+        "name": "Full Moon",
+        "color": "green",
+        "cost": {
+            "troops": 0
+        },
+        "effects": [
+            {
+                "type": "ALL_BUILDINGS_PLUS_ONE"
+            },
+            {
+                "type": "ADD_TROOPS",
+                "value": 3
+            }
+        ],
+        "description": "All players +1 Barracks; +3 Troops",
+        "flavor": "Even the tamest heart howls tonight."
+    },
+    "elf_scouts": {
+        "id": "elf_scouts",
+        "name": "Elf Scouts",
+        "color": "green",
+        "cost": {
+            "troops": 2
+        },
+        "effects": [
+            {
+                "type": "DRAW_DISCARD"
+            },
+            {
+                "type": "PLAY_AGAIN"
+            }
+        ],
+        "description": "Draw 1, discard 1; Play Again",
+        "flavor": "Silent as leaves, deadly as frost."
+    },
+    "new_equipment": {
+        "id": "new_equipment",
+        "name": "New Equipment",
+        "color": "red",
+        "cost": {
+            "ore": 7
+        },
+        "effects": [
+            {
+                "type": "ADD_BARRACKS",
+                "value": 1
+            },
+            {
+                "type": "ADD_WALL",
+                "value": 4
+            }
+        ],
+        "description": "+1 Barracks, +4 Wall",
+        "flavor": "Better gear for better soldiers."
+    },
+    "catapult": {
+        "id": "catapult",
+        "name": "Catapult",
+        "color": "red",
+        "cost": {
+            "ore": 18
+        },
+        "effects": [
+            {
+                "type": "ADD_WALL",
+                "value": 6
+            },
+            {
+                "type": "DAMAGE_TOWER",
+                "value": 10
+            }
+        ],
+        "description": "+6 Wall; deal 10 damage to enemy Tower",
+        "flavor": "Physics, applied with prejudice."
+    },
+    "reinforced_wall": {
+        "id": "reinforced_wall",
+        "name": "Reinforced Wall",
+        "color": "red",
+        "cost": {
+            "ore": 5
+        },
+        "effects": [
+            {
+                "type": "ADD_WALL",
+                "value": 6
+            }
+        ],
+        "description": "+6 Wall",
+        "flavor": "Layer upon layer of stubborn stone."
+    },
+    "discord": {
+        "id": "discord",
+        "name": "Discord",
+        "color": "blue",
+        "cost": {
+            "mana": 5
+        },
+        "effects": [
+            {
+                "type": "ALL_TOWERS_MINUS",
+                "value": 7
+            },
+            {
+                "type": "LOSE_MONASTERY",
+                "value": 1,
+                "allPlayers": true
+            }
+        ],
+        "description": "All Towers -7; all Monasteries -1",
+        "flavor": "Trust crumbles where envy grows."
+    },
+    "pest": {
+        "id": "pest",
+        "name": "Pest",
+        "color": "green",
+        "cost": {
+            "troops": 8
+        },
+        "effects": [
+            {
+                "type": "DAMAGE_IF_WALL_ZERO",
+                "value": 10,
+                "elseValue": 6
+            }
+        ],
+        "description": "If opponent Wall = 0: deal 10; else 6",
+        "flavor": "A swarm of tiny terrors."
+    },
+    "concussion": {
+        "id": "concussion",
+        "name": "Concussion",
+        "color": "red",
+        "cost": {
+            "ore": 7
+        },
+        "effects": [
+            {
+                "type": "ALL_WALLS_MINUS",
+                "value": 5
+            },
+            {
+                "type": "PLAY_AGAIN"
+            }
+        ],
+        "description": "All Walls -5; Play Again",
+        "flavor": "The ground remembers every blow."
+    },
+    "small_snakes": {
+        "id": "small_snakes",
+        "name": "Small Snakes",
+        "color": "green",
+        "cost": {
+            "troops": 6
+        },
+        "effects": [
+            {
+                "type": "DAMAGE_TOWER",
+                "value": 4
+            }
+        ],
+        "description": "Deal 4 to enemy Tower",
+        "flavor": "Venom in small packages."
+    },
+    "ogre": {
+        "id": "ogre",
+        "name": "Ogre",
+        "color": "green",
+        "cost": {
+            "troops": 6
+        },
+        "effects": [
+            {
+                "type": "DAMAGE",
+                "value": 7
+            }
+        ],
+        "description": "Deal 7 damage",
+        "flavor": "Big, dumb, and hits like a landslide."
+    },
+    "steal_technology": {
+        "id": "steal_technology",
+        "name": "Steal Technology",
+        "color": "red",
+        "cost": {
+            "ore": 5
+        },
+        "effects": [
+            {
+                "type": "SET_MINE_TO_OPPONENT"
+            }
+        ],
+        "description": "If your Mine < opponent's: your Mine = opponent's Mine",
+        "flavor": "Why invent when you can borrow?"
+    },
+    "mighty_wall": {
+        "id": "mighty_wall",
+        "name": "Mighty Wall",
+        "color": "red",
+        "cost": {
+            "ore": 14
+        },
+        "effects": [
+            {
+                "type": "ADD_WALL",
+                "value": 11
+            },
+            {
+                "type": "TOWER_MINUS_SELF",
+                "value": 6
+            }
+        ],
+        "description": "+11 Wall; -6 to your Tower",
+        "flavor": "Legends say it once held back a god."
+    },
+    "rainbow": {
+        "id": "rainbow",
+        "name": "Rainbow",
+        "color": "blue",
+        "cost": {
+            "mana": 0
+        },
+        "effects": [
+            {
+                "type": "ALL_TOWERS_MINUS",
+                "value": -1
+            },
+            {
+                "type": "ADD_MANA",
+                "value": 3
+            }
+        ],
+        "description": "All players +1 Tower; you gain +3 Mana",
+        "flavor": "Hope arcs across the battlefield."
+    },
+    "awe": {
+        "id": "awe",
+        "name": "Awe",
+        "color": "blue",
+        "cost": {
+            "mana": 5
+        },
+        "effects": [
+            {
+                "type": "ADD_TOWER",
+                "value": 4
+            },
+            {
+                "type": "LOSE_TROOPS",
+                "value": 3
+            },
+            {
+                "type": "DAMAGE_TOWER",
+                "value": 2
+            }
+        ],
+        "description": "+4 Tower, lose 3 Troops; deal 2 to enemy Tower",
+        "flavor": "Terror is a weapon too."
+    },
+    "shift": {
+        "id": "shift",
+        "name": "Shift",
+        "color": "red",
+        "cost": {
+            "ore": 17
+        },
+        "effects": [
+            {
+                "type": "SWAP_WALLS"
+            }
+        ],
+        "description": "Swap both players' Walls",
+        "flavor": "What was yours is now mine."
+    },
+    "vampire": {
+        "id": "vampire",
+        "name": "Vampire",
+        "color": "green",
+        "cost": {
+            "troops": 17
+        },
+        "effects": [
+            {
+                "type": "DAMAGE",
+                "value": 10
+            },
+            {
+                "type": "LOSE_TROOPS",
+                "value": 5
+            },
+            {
+                "type": "LOSE_BARRACKS",
+                "value": 1
+            }
+        ],
+        "description": "Deal 10; opponent -5 Troops, -1 Barracks",
+        "flavor": "It drinks more than blood—it drinks hope."
+    },
+    "slave_labor": {
+        "id": "slave_labor",
+        "name": "Slave Labor",
+        "color": "red",
+        "cost": {
+            "ore": 8
+        },
+        "effects": [
+            {
+                "type": "ADD_ORE",
+                "value": 8
+            },
+            {
+                "type": "LOSE_TROOPS",
+                "value": 8
+            }
+        ],
+        "description": "+8 Ore; you lose 8 Troops",
+        "flavor": "Chains clank in the deep dark."
+    },
+    "ore_vein": {
+        "id": "ore_vein",
+        "name": "Ore Vein",
+        "color": "blue",
+        "cost": {
+            "mana": 5
+        },
+        "effects": [
+            {
+                "type": "ADD_MINE",
+                "value": 1
+            },
+            {
+                "type": "ADD_ORE",
+                "value": 2
+            }
+        ],
+        "description": "+1 Mine; +2 Ore",
+        "flavor": "Follow the glitter into the earth."
+    },
+    "stone_giant": {
+        "id": "stone_giant",
+        "name": "Stone Giant",
+        "color": "green",
+        "cost": {
+            "troops": 15
+        },
+        "effects": [
+            {
+                "type": "DAMAGE",
+                "value": 10
+            },
+            {
+                "type": "ADD_WALL",
+                "value": 4
+            }
+        ],
+        "description": "Deal 10 damage; +4 Wall",
+        "flavor": "Patience carved from living rock."
+    },
+    "magic_mountain": {
+        "id": "magic_mountain",
+        "name": "Magic Mountain",
+        "color": "red",
+        "cost": {
+            "ore": 7
+        },
+        "effects": [
+            {
+                "type": "ADD_TROOPS",
+                "value": 8
+            },
+            {
+                "type": "ADD_WALL",
+                "value": 8
+            }
+        ],
+        "description": "+8 Troops, +8 Wall",
+        "flavor": "The peak hums with forgotten power."
+    },
+    "tunnelers": {
+        "id": "tunnelers",
+        "name": "Tunnelers",
+        "color": "green",
+        "cost": {
+            "troops": 11
+        },
+        "effects": [
+            {
+                "type": "DAMAGE",
+                "value": 8
+            },
+            {
+                "type": "LOSE_MINE",
+                "value": 1
+            }
+        ],
+        "description": "Deal 8 damage; opponent Mine -1",
+        "flavor": "They come from below, where light fears to go."
+    },
+    "prism": {
+        "id": "prism",
+        "name": "Prism",
+        "color": "blue",
+        "cost": {
+            "mana": 2
+        },
+        "effects": [
+            {
+                "type": "DRAW_DISCARD"
+            },
+            {
+                "type": "PLAY_AGAIN"
+            }
+        ],
+        "description": "Draw 1, discard 1; Play Again",
+        "flavor": "Light splits into seven kinds of trouble."
+    },
+    "eclipse": {
+        "id": "eclipse",
+        "name": "Eclipse",
+        "color": "blue",
+        "cost": {
+            "mana": 4
+        },
+        "effects": [
+            {
+                "type": "ADD_TOWER",
+                "value": 2
+            },
+            {
+                "type": "DAMAGE_TOWER",
+                "value": 2
+            }
+        ],
+        "description": "+2 Tower; 2 damage to enemy Tower",
+        "flavor": "The sun flees, and shadows reign."
+    },
+    "meditation": {
+        "id": "meditation",
+        "name": "Meditation",
+        "color": "blue",
+        "cost": {
+            "mana": 18
+        },
+        "effects": [
+            {
+                "type": "ADD_TOWER",
+                "value": 13
+            },
+            {
+                "type": "ADD_TROOPS",
+                "value": 6
+            },
+            {
+                "type": "ADD_ORE",
+                "value": 6
+            }
+        ],
+        "description": "+13 Tower, +6 Troops, +6 Ore",
+        "flavor": "In silence, power blooms."
+    },
+    "foundation": {
+        "id": "foundation",
+        "name": "Foundation",
+        "color": "red",
+        "cost": {
+            "ore": 3
+        },
+        "effects": [
+            {
+                "type": "IF_WALL_ZERO",
+                "then": [
+                    {
+                        "type": "ADD_WALL",
+                        "value": 5
+                    }
+                ],
+                "else": [
+                    {
+                        "type": "ADD_WALL",
+                        "value": 3
+                    }
+                ]
+            }
+        ],
+        "description": "If Wall = 0: +5; else +3",
+        "flavor": "Every fortress begins with one stone."
+    },
+    "gremlin": {
+        "id": "gremlin",
+        "name": "Gremlin",
+        "color": "green",
+        "cost": {
+            "troops": 8
+        },
+        "effects": [
+            {
+                "type": "DAMAGE",
+                "value": 2
+            },
+            {
+                "type": "ADD_WALL",
+                "value": 4
+            },
+            {
+                "type": "ADD_TOWER",
+                "value": 2
+            }
+        ],
+        "description": "Deal 2 damage; +4 Wall, +2 Tower",
+        "flavor": "It breaks things. All things. Always."
+    },
+    "goblin_army": {
+        "id": "goblin_army",
+        "name": "Goblin Army",
+        "color": "green",
+        "cost": {
+            "troops": 3
+        },
+        "effects": [
+            {
+                "type": "DAMAGE_TOWER",
+                "value": 6
+            },
+            {
+                "type": "DAMAGE_TOWER_SELF",
+                "value": 3
+            }
+        ],
+        "description": "Deal 6 to enemy Tower; you take 3",
+        "flavor": "Quantity has a quality all its own."
+    },
+    "new_achievements": {
+        "id": "new_achievements",
+        "name": "New Achievements",
+        "color": "red",
+        "cost": {
+            "ore": 0
+        },
+        "effects": [
+            {
+                "type": "ALL_BUILDINGS_PLUS_ONE"
+            },
+            {
+                "type": "ADD_TROOPS",
+                "value": 4
+            }
+        ],
+        "description": "All players +1 Barracks; you gain +4 Troops",
+        "flavor": "Glory drives men harder than fear."
+    },
+    "cave_in": {
+        "id": "cave_in",
+        "name": "Cave-in",
+        "color": "red",
+        "cost": {
+            "ore": 4
+        },
+        "effects": [
+            {
+                "type": "LOSE_BARRACKS",
+                "value": 1
+            }
+        ],
+        "description": "Opponent loses 1 Barracks",
+        "flavor": "The mountain claims its due."
+    },
+    "devil": {
+        "id": "devil",
+        "name": "Devil",
+        "color": "green",
+        "cost": {
+            "troops": 5
+        },
+        "effects": [
+            {
+                "type": "DAMAGE",
+                "value": 6
+            },
+            {
+                "type": "LOSE_ORE",
+                "value": 5,
+                "allPlayers": true
+            },
+            {
+                "type": "LOSE_MANA",
+                "value": 5,
+                "allPlayers": true
+            },
+            {
+                "type": "LOSE_TROOPS",
+                "value": 5,
+                "allPlayers": true
+            }
+        ],
+        "description": "Deal 6; all -5 Ore, Mana, Troops",
+        "flavor": "It wants your soul, but troops will do."
+    },
+    "spellweavers": {
+        "id": "spellweavers",
+        "name": "Spellweavers",
+        "color": "blue",
+        "cost": {
+            "mana": 3
+        },
+        "effects": [
+            {
+                "type": "ADD_MONASTERY",
+                "value": 1
+            }
+        ],
+        "description": "+1 Monastery",
+        "flavor": "Threads of light woven into war."
+    },
+    "hardening": {
+        "id": "hardening",
+        "name": "Hardening",
+        "color": "blue",
+        "cost": {
+            "mana": 14
+        },
+        "effects": [
+            {
+                "type": "ADD_TOWER",
+                "value": 10
+            },
+            {
+                "type": "ADD_WALL",
+                "value": 5
+            }
+        ],
+        "description": "+10 Tower, +5 Wall",
+        "flavor": "Flesh becomes stone, will becomes iron."
+    },
+    "pegasus_rider": {
+        "id": "pegasus_rider",
+        "name": "Pegasus Rider",
+        "color": "green",
+        "cost": {
+            "troops": 18
+        },
+        "effects": [
+            {
+                "type": "DAMAGE_TOWER",
+                "value": 12
+            }
+        ],
+        "description": "Deal 12 damage to enemy Tower",
+        "flavor": "From the clouds, judgment descends."
+    },
+    "barracks": {
+        "id": "barracks",
+        "name": "Barracks",
+        "color": "red",
+        "cost": {
+            "ore": 10
+        },
+        "effects": [
+            {
+                "type": "ADD_TROOPS",
+                "value": 6
+            },
+            {
+                "type": "ADD_WALL",
+                "value": 6
+            },
+            {
+                "type": "IF_BARRACKS_LT_OPPONENT",
+                "thenAddBuilding": 1
+            }
+        ],
+        "description": "+6 Troops, +6 Wall; if your Barracks < opponent's: +1 Barracks",
+        "flavor": "The forge of soldiers and slogans."
+    },
+    "parity": {
+        "id": "parity",
+        "name": "Parity",
+        "color": "blue",
+        "cost": {
+            "mana": 7
+        },
+        "effects": [
+            {
+                "type": "ALL_MONASTERIES_EQUALIZE"
+            }
+        ],
+        "description": "All Monasteries become the highest Monastery",
+        "flavor": "Equality is a cruel kind of mercy."
+    },
+    "ruby": {
+        "id": "ruby",
+        "name": "Ruby",
+        "color": "blue",
+        "cost": {
+            "mana": 0
+        },
+        "effects": [
+            {
+                "type": "ADD_TOWER",
+                "value": 8
+            },
+            {
+                "type": "ADD_MONASTERY",
+                "value": 3
+            }
+        ],
+        "description": "+8 Tower, +3 Monastery",
+        "flavor": "Warm as blood, bright as wrath."
+    },
+    "empathy": {
+        "id": "empathy",
+        "name": "Empathy",
+        "color": "blue",
+        "cost": {
+            "mana": 14
+        },
+        "effects": [
+            {
+                "type": "ADD_TOWER",
+                "value": 8
+            },
+            {
+                "type": "ADD_BARRACKS",
+                "value": 1
+            }
+        ],
+        "description": "+8 Tower, +1 Barracks",
+        "flavor": "To feel the enemy's pain is to know their weakness."
+    },
+    "galleries": {
+        "id": "galleries",
+        "name": "Galleries",
+        "color": "red",
+        "cost": {
+            "ore": 5
+        },
+        "effects": [
+            {
+                "type": "ADD_WALL",
+                "value": 6
+            },
+            {
+                "type": "PLAY_AGAIN"
+            }
+        ],
+        "description": "+6 Wall; Play Again",
+        "flavor": "The dwarves dug too deep, too greedily."
+    },
+    "blessed_soil": {
+        "id": "blessed_soil",
+        "name": "Blessed Soil",
+        "color": "red",
+        "cost": {
+            "ore": 1
+        },
+        "effects": [
+            {
+                "type": "ADD_WALL",
+                "value": 1
+            },
+            {
+                "type": "PLAY_AGAIN"
+            }
+        ],
+        "description": "+1 Wall; Play Again",
+        "flavor": "Earth remembers the prayers of farmers."
+    },
+    "singing_coal": {
+        "id": "singing_coal",
+        "name": "Singing Coal",
+        "color": "red",
+        "cost": {
+            "ore": 1
+        },
+        "effects": [
+            {
+                "type": "ADD_ORE",
+                "value": 2
+            },
+            {
+                "type": "PLAY_AGAIN"
+            }
+        ],
+        "description": "+2 Ore; Play Again",
+        "flavor": "It burns with a voice like choirs."
+    },
+    "soft_stone": {
+        "id": "soft_stone",
+        "name": "Soft Stone",
+        "color": "blue",
+        "cost": {
+            "mana": 7
+        },
+        "effects": [
+            {
+                "type": "ADD_TOWER",
+                "value": 5
+            },
+            {
+                "type": "LOSE_ORE",
+                "value": 6
+            }
+        ],
+        "description": "+5 Tower; opponent loses 6 Ore",
+        "flavor": "Not all stone is stubborn."
+    },
+    "warrior": {
+        "id": "warrior",
+        "name": "Warrior",
+        "color": "green",
+        "cost": {
+            "troops": 13
+        },
+        "effects": [
+            {
+                "type": "DAMAGE",
+                "value": 13
+            },
+            {
+                "type": "LOSE_MANA",
+                "value": 3
+            }
+        ],
+        "description": "Deal 13 damage; you lose 3 Mana",
+        "flavor": "A lifetime of training, one moment of glory."
+    },
+    "minotaur": {
+        "id": "minotaur",
+        "name": "Minotaur",
+        "color": "green",
+        "cost": {
+            "troops": 3
+        },
+        "effects": [
+            {
+                "type": "ADD_BARRACKS",
+                "value": 1
+            }
+        ],
+        "description": "+1 Barracks",
+        "flavor": "Lost in the maze of its own rage."
+    },
+    "shining_stone": {
+        "id": "shining_stone",
+        "name": "Shining Stone",
+        "color": "blue",
+        "cost": {
+            "mana": 6
+        },
+        "effects": [
+            {
+                "type": "ADD_TOWER",
+                "value": 8
+            },
+            {
+                "type": "ADD_WALL",
+                "value": 3
+            }
+        ],
+        "description": "+8 Tower, +3 Wall",
+        "flavor": "It catches the sun and throws it back."
+    },
+    "lightning": {
+        "id": "lightning",
+        "name": "Lightning",
+        "color": "blue",
+        "cost": {
+            "mana": 11
+        },
+        "effects": [
+            {
+                "type": "TOWER_DAMAGE_IF_GT_WALL",
+                "value": 8,
+                "elseValue": 8
+            }
+        ],
+        "description": "If Tower > opponent's Wall: 8 to Tower; else 8 to all Towers",
+        "flavor": "The sky judges without mercy."
+    },
+    "little_wall": {
+        "id": "little_wall",
+        "name": "Little Wall",
+        "color": "red",
+        "cost": {
+            "ore": 3
+        },
+        "effects": [
+            {
+                "type": "ADD_WALL",
+                "value": 4
+            }
+        ],
+        "description": "+4 Wall",
+        "flavor": "Modest, but better than nothing."
+    },
+    "dragon": {
+        "id": "dragon",
+        "name": "Dragon",
+        "color": "green",
+        "cost": {
+            "troops": 25
+        },
+        "effects": [
+            {
+                "type": "DAMAGE",
+                "value": 20
+            },
+            {
+                "type": "LOSE_MANA",
+                "value": 10
+            },
+            {
+                "type": "LOSE_BARRACKS",
+                "value": 1
+            }
+        ],
+        "description": "Deal 20 damage; opponent -10 Mana, -1 Barracks",
+        "flavor": "Wings of shadow, breath of ruin."
+    },
+    "cow_rampage": {
+        "id": "cow_rampage",
+        "name": "Cow Rampage",
+        "color": "green",
+        "cost": {
+            "troops": 0
+        },
+        "effects": [
+            {
+                "type": "LOSE_TROOPS",
+                "value": 6,
+                "allPlayers": true
+            }
+        ],
+        "description": "All players lose 6 Troops",
+        "flavor": "Never underestimate a frightened herd."
+    },
+    "mine_collapse": {
+        "id": "mine_collapse",
+        "name": "Mine Collapse",
+        "color": "red",
+        "cost": {
+            "ore": 2
+        },
+        "effects": [
+            {
+                "type": "LOSE_MINE",
+                "value": 1
+            }
+        ],
+        "description": "You lose 1 Mine",
+        "flavor": "The deep does not forgive carelessness."
+    },
+    "dwarf": {
+        "id": "dwarf",
+        "name": "Dwarf",
+        "color": "green",
+        "cost": {
+            "troops": 2
+        },
+        "effects": [
+            {
+                "type": "DAMAGE",
+                "value": 3
+            },
+            {
+                "type": "ADD_MANA",
+                "value": 1
+            }
+        ],
+        "description": "Deal 3 damage; +1 Mana",
+        "flavor": "Stout heart, stouter pickaxe."
+    },
+    "harmony": {
+        "id": "harmony",
+        "name": "Harmony",
+        "color": "blue",
+        "cost": {
+            "mana": 7
+        },
+        "effects": [
+            {
+                "type": "ADD_MONASTERY",
+                "value": 1
+            },
+            {
+                "type": "ADD_TOWER",
+                "value": 3
+            },
+            {
+                "type": "ADD_WALL",
+                "value": 3
+            }
+        ],
+        "description": "+1 Monastery, +3 Tower, +3 Wall",
+        "flavor": "Peace is just another kind of power."
+    },
+    "diamond": {
+        "id": "diamond",
+        "name": "Diamond",
+        "color": "blue",
+        "cost": {
+            "mana": 16
+        },
+        "effects": [
+            {
+                "type": "ADD_TOWER",
+                "value": 15
+            }
+        ],
+        "description": "+15 Tower",
+        "flavor": "Perfection cut from chaos."
+    },
+    "amethyst": {
+        "id": "amethyst",
+        "name": "Amethyst",
+        "color": "blue",
+        "cost": {
+            "mana": 2
+        },
+        "effects": [
+            {
+                "type": "ADD_TOWER",
+                "value": 3
+            }
+        ],
+        "description": "+3 Tower",
+        "flavor": "Purple wisdom for those who listen."
+    },
+    "dwarves_gnomes": {
+        "id": "dwarves_gnomes",
+        "name": "Dwarves (Gnomes)",
+        "color": "green",
+        "cost": {
+            "troops": 5
+        },
+        "effects": [
+            {
+                "type": "ADD_WALL",
+                "value": 4
+            },
+            {
+                "type": "ADD_TROOPS",
+                "value": 4
+            }
+        ],
+        "description": "+4 Wall, +4 Troops",
+        "flavor": "Small folk, big grudges."
+    },
+    "spear": {
+        "id": "spear",
+        "name": "Spear",
+        "color": "blue",
+        "cost": {
+            "mana": 4
+        },
+        "effects": [
+            {
+                "type": "DAMAGE_TOWER",
+                "value": 5
+            }
+        ],
+        "description": "Deal 5 damage to enemy Tower",
+        "flavor": "The first weapon, still the honest one."
+    },
+    "troll_instructor": {
+        "id": "troll_instructor",
+        "name": "Troll Instructor",
+        "color": "green",
+        "cost": {
+            "troops": 7
+        },
+        "effects": [
+            {
+                "type": "ADD_BARRACKS",
+                "value": 2
+            }
+        ],
+        "description": "+2 Barracks",
+        "flavor": "Pain is the syllabus."
+    },
+    "fairy": {
+        "id": "fairy",
+        "name": "Fairy",
+        "color": "green",
+        "cost": {
+            "troops": 1
+        },
+        "effects": [
+            {
+                "type": "DAMAGE",
+                "value": 2
+            },
+            {
+                "type": "PLAY_AGAIN"
+            }
+        ],
+        "description": "Deal 2 damage; Play Again",
+        "flavor": "Wings like glass, heart like fire."
+    },
+    "unicorn": {
+        "id": "unicorn",
+        "name": "Unicorn",
+        "color": "green",
+        "cost": {
+            "troops": 9
+        },
+        "effects": [
+            {
+                "type": "DAMAGE_IF_MONASTERY_GT",
+                "value": 12,
+                "elseValue": 8
+            }
+        ],
+        "description": "If Monastery > opponent's: deal 12; else 8",
+        "flavor": "Purity is a sharp kind of danger."
+    },
+    "crystal_shield": {
+        "id": "crystal_shield",
+        "name": "Crystal Shield",
+        "color": "blue",
+        "cost": {
+            "mana": 12
+        },
+        "effects": [
+            {
+                "type": "ADD_TOWER",
+                "value": 8
+            },
+            {
+                "type": "ADD_WALL",
+                "value": 3
+            }
+        ],
+        "description": "+8 Tower, +3 Wall",
+        "flavor": "Light refracts, and so do blades."
+    },
+    "heart_of_dragon": {
+        "id": "heart_of_dragon",
+        "name": "Heart of Dragon",
+        "color": "red",
+        "cost": {
+            "ore": 24
+        },
+        "effects": [
+            {
+                "type": "ADD_WALL",
+                "value": 20
+            },
+            {
+                "type": "ADD_TOWER",
+                "value": 8
+            }
+        ],
+        "description": "+20 Wall, +8 Tower",
+        "flavor": "Still warm. Still beating. Still angry."
+    },
+    "crack": {
+        "id": "crack",
+        "name": "Crack",
+        "color": "blue",
+        "cost": {
+            "mana": 2
+        },
+        "effects": [
+            {
+                "type": "DAMAGE_TOWER",
+                "value": 3
+            }
+        ],
+        "description": "Deal 3 damage to enemy Tower",
+        "flavor": "A flaw is just a door waiting to open."
+    },
+    "large_vein": {
+        "id": "large_vein",
+        "name": "Large Vein",
+        "color": "red",
+        "cost": {
+            "ore": 4
+        },
+        "effects": [
+            {
+                "type": "IF_MINE_LT_OPPONENT",
+                "thenAdd": 2
+            },
+            {
+                "type": "ADD_MINE",
+                "value": 1,
+                "allPlayers": true
+            }
+        ],
+        "description": "If your Mine < opponent's: +2 Mine; else +1 Mine",
+        "flavor": "The mountain bleeds wealth."
+    },
+    "dwarves_miners": {
+        "id": "dwarves_miners",
+        "name": "Dwarves (Miners)",
+        "color": "red",
+        "cost": {
+            "ore": 5
+        },
+        "effects": [
+            {
+                "type": "ADD_WALL",
+                "value": 4
+            },
+            {
+                "type": "ADD_BARRACKS",
+                "value": 4
+            }
+        ],
+        "description": "+4 Wall, +4 Barracks",
+        "flavor": "They sing as they dig toward doom."
+    },
+    "mad_sheep": {
+        "id": "mad_sheep",
+        "name": "Mad Sheep",
+        "color": "green",
+        "cost": {
+            "troops": 6
+        },
+        "effects": [
+            {
+                "type": "DAMAGE",
+                "value": 6
+            },
+            {
+                "type": "LOSE_TROOPS",
+                "value": 3
+            }
+        ],
+        "description": "Deal 6 damage; opponent loses 3 Troops",
+        "flavor": "Fear the fluffy ones."
+    },
+    "poison_cloud": {
+        "id": "poison_cloud",
+        "name": "Poison Cloud",
+        "color": "green",
+        "cost": {
+            "troops": 11
+        },
+        "effects": [
+            {
+                "type": "DAMAGE_IF_WALL_GT",
+                "value": 10,
+                "elseValue": 7
+            }
+        ],
+        "description": "If opponent Wall > 10: deal 10; else 7",
+        "flavor": "Breathe deep, if you dare."
+    },
+    "fire_ruby": {
+        "id": "fire_ruby",
+        "name": "Fire Ruby",
+        "color": "blue",
+        "cost": {
+            "mana": 7
+        },
+        "effects": [
+            {
+                "type": "ADD_TOWER",
+                "value": 7
+            },
+            {
+                "type": "ADD_WALL",
+                "value": 5
+            }
+        ],
+        "description": "+7 Tower, +5 Wall",
+        "flavor": "Burns twice—once in light, once in memory."
+    },
+    "elf_archers": {
+        "id": "elf_archers",
+        "name": "Elf Archers",
+        "color": "green",
+        "cost": {
+            "troops": 10
+        },
+        "effects": [
+            {
+                "type": "DAMAGE_TOWER",
+                "value": 6
+            }
+        ],
+        "description": "Deal 6 to enemy Tower",
+        "flavor": "Arrows that whisper before they strike."
+    },
+    "rock_garden": {
+        "id": "rock_garden",
+        "name": "Rock Garden",
+        "color": "red",
+        "cost": {
+            "ore": 8
+        },
+        "effects": [
+            {
+                "type": "ADD_WALL",
+                "value": 6
+            },
+            {
+                "type": "ADD_BARRACKS",
+                "value": 6
+            }
+        ],
+        "description": "+6 Wall, +6 Barracks",
+        "flavor": "Beauty grown from brutality."
+    },
+    "innovations": {
+        "id": "innovations",
+        "name": "Innovations",
+        "color": "red",
+        "cost": {
+            "ore": 4
+        },
+        "effects": [
+            {
+                "type": "ALL_BUILDINGS_PLUS_ONE"
+            },
+            {
+                "type": "ADD_MANA",
+                "value": 4
+            }
+        ],
+        "description": "All players +1 Mine; you gain +4 Mana",
+        "flavor": "The wheel turns again, sharper this time."
+    },
+    "ghost_fairy": {
+        "id": "ghost_fairy",
+        "name": "Ghost Fairy",
+        "color": "green",
+        "cost": {
+            "troops": 6
+        },
+        "effects": [
+            {
+                "type": "DAMAGE_TOWER",
+                "value": 2
+            },
+            {
+                "type": "PLAY_AGAIN"
+            }
+        ],
+        "description": "Deal 2 to enemy Tower; Play Again",
+        "flavor": "A light that leads you astray."
+    },
+    "defective_ore": {
+        "id": "defective_ore",
+        "name": "Defective Ore",
+        "color": "red",
+        "cost": {
+            "ore": 0
+        },
+        "effects": [
+            {
+                "type": "LOSE_ORE",
+                "value": 8,
+                "allPlayers": true
+            }
+        ],
+        "description": "All players lose 8 Ore",
+        "flavor": "Even the earth makes mistakes."
+    },
+    "large_wall": {
+        "id": "large_wall",
+        "name": "Large Wall",
+        "color": "red",
+        "cost": {
+            "ore": 3
+        },
+        "effects": [
+            {
+                "type": "ADD_WALL",
+                "value": 4
+            }
+        ],
+        "description": "+4 Wall",
+        "flavor": "Tall enough to touch clouds, thick enough to stop gods."
+    },
+    "power_surge": {
+        "id": "power_surge",
+        "name": "Power Surge",
+        "color": "blue",
+        "cost": {
+            "mana": 3
+        },
+        "effects": [
+            {
+                "type": "TOWER_MINUS_SELF",
+                "value": 5
+            },
+            {
+                "type": "ADD_MONASTERY",
+                "value": 2
+            }
+        ],
+        "description": "-5 Tower; +2 Monastery",
+        "flavor": "Mana unchecked is mana unchained."
+    },
+    "great_wall": {
+        "id": "great_wall",
+        "name": "Great Wall",
+        "color": "red",
+        "cost": {
+            "ore": 8
+        },
+        "effects": [
+            {
+                "type": "ADD_WALL",
+                "value": 8
+            }
+        ],
+        "description": "+8 Wall",
+        "flavor": "A line drawn between survival and oblivion."
+    },
+    "groundwater": {
+        "id": "groundwater",
+        "name": "Groundwater",
+        "color": "red",
+        "cost": {
+            "ore": 4
+        },
+        "effects": [
+            {
+                "type": "ADD_MINE",
+                "value": 1,
+                "allPlayers": true
+            }
+        ],
+        "description": "+1 to both players' Mines",
+        "flavor": "Life flows where stone yields."
+    },
+    "miners": {
+        "id": "miners",
+        "name": "Miners",
+        "color": "red",
+        "cost": {
+            "ore": 3
+        },
+        "effects": [
+            {
+                "type": "ADD_MINE",
+                "value": 1
+            }
+        ],
+        "description": "+1 Mine",
+        "flavor": "Dirt under nails, gold in hand."
+    },
+    "orc": {
+        "id": "orc",
+        "name": "Orc",
+        "color": "green",
+        "cost": {
+            "troops": 3
+        },
+        "effects": [
+            {
+                "type": "DAMAGE",
+                "value": 5
+            }
+        ],
+        "description": "Deal 5 damage",
+        "flavor": "Green skin, black temper."
+    },
+    "goblin_archers": {
+        "id": "goblin_archers",
+        "name": "Goblin Archers",
+        "color": "green",
+        "cost": {
+            "troops": 4
+        },
+        "effects": [
+            {
+                "type": "DAMAGE_TOWER",
+                "value": 3
+            },
+            {
+                "type": "ADD_MANA",
+                "value": 1
+            }
+        ],
+        "description": "Deal 3 to enemy Tower; +1 Mana",
+        "flavor": "They aim for the knees. Always the knees."
+    },
+    "thief": {
+        "id": "thief",
+        "name": "Thief",
+        "color": "green",
+        "cost": {
+            "troops": 12
+        },
+        "effects": [
+            {
+                "type": "LOSE_MANA",
+                "value": 10
+            },
+            {
+                "type": "LOSE_ORE",
+                "value": 5
+            },
+            {
+                "type": "ADD_MANA",
+                "value": 5
+            },
+            {
+                "type": "ADD_ORE",
+                "value": 2
+            }
+        ],
+        "description": "Opponent -10 Mana, -5 Ore; you +5 Mana, +2 Ore",
+        "flavor": "Your pocket feels lighter. So does your hope."
+    },
+    "berserk": {
+        "id": "berserk",
+        "name": "Berserk",
+        "color": "green",
+        "cost": {
+            "troops": 4
+        },
+        "effects": [
+            {
+                "type": "DAMAGE_TOWER",
+                "value": 8
+            },
+            {
+                "type": "DAMAGE_TOWER_SELF",
+                "value": 3
+            }
+        ],
+        "description": "Deal 8 to enemy Tower; you take 3",
+        "flavor": "Rage is a kind of clarity."
+    },
+    "dragon_eye": {
+        "id": "dragon_eye",
+        "name": "Dragon Eye",
+        "color": "blue",
+        "cost": {
+            "mana": 21
+        },
+        "effects": [
+            {
+                "type": "ADD_TOWER",
+                "value": 20
+            }
+        ],
+        "description": "+20 Tower",
+        "flavor": "To gaze into it is to know fear."
+    }
+}
