@@ -43,16 +43,9 @@ async function loadGeneratedSound(name: string, config: { frequency: number; dur
   }
 }
 
-async function tryLoadAsset(name: string): Promise<any> {
-  // Try to load from assets/sounds/ -- will fail gracefully if file doesn't exist
-  const assetMap: Record<string, any> = {
-    cardPlay: require("../../assets/sounds/card-play.mp3"),
-    damage: require("../../assets/sounds/damage.mp3"),
-    victory: require("../../assets/sounds/victory.mp3"),
-    defeat: require("../../assets/sounds/defeat.mp3"),
-    tick: require("../../assets/sounds/tick.mp3"),
-  };
-  return assetMap[name];
+async function tryLoadAsset(_name: string): Promise<any> {
+  // Assets not bundled yet — sounds play via Web Audio API generated tones
+  return null;
 }
 
 export async function playSound(name: string) {
