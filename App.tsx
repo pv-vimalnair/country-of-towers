@@ -4,8 +4,10 @@ import HomeScreen from "./src/screens/HomeScreen";
 import LobbyScreen from "./src/screens/LobbyScreen";
 import GameBoardScreen from "./src/screens/GameBoardScreen";
 import MatchEndScreen from "./src/screens/MatchEndScreen";
+import CollectionScreen from "./src/screens/CollectionScreen";
+import LeaderboardScreen from "./src/screens/LeaderboardScreen";
 
-type Screen = "Home" | "Lobby" | "GameBoard" | "MatchEnd";
+type Screen = "Home" | "Lobby" | "GameBoard" | "MatchEnd" | "Collection" | "Leaderboard";
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>("Home");
@@ -33,6 +35,12 @@ export default function App() {
           navigation={{ navigate, goBack: () => navigate("Home") }}
           route={{ params: routeParams["MatchEnd"] }}
         />
+      )}
+      {currentScreen === "Collection" && (
+        <CollectionScreen navigation={{ navigate, goBack: () => navigate("Home") }} />
+      )}
+      {currentScreen === "Leaderboard" && (
+        <LeaderboardScreen navigation={{ navigate, goBack: () => navigate("Home") }} />
       )}
     </>
   );

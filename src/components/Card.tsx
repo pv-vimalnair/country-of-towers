@@ -9,6 +9,7 @@ import Animated, {
   withTiming,
   interpolate,
 } from "react-native-reanimated";
+import CardArt from "./CardArt";
 
 export interface CardProps {
   cardId: string;
@@ -152,29 +153,9 @@ export default function Card({
             </View>
           </View>
 
-          {/* Art area — gradient + color band */}
-          <View
-            style={[
-              styles.artArea,
-              { backgroundColor: tokens.gradientStart },
-            ]}
-          >
-            <View
-              style={[
-                styles.artGlow,
-                { backgroundColor: tokens.accent, opacity: 0.08 },
-              ]}
-            />
-            <View
-              style={[
-                styles.artAccentLine,
-                { backgroundColor: tokens.accent },
-              ]}
-            />
-            {/* Card type icon in art area center */}
-            <Text style={styles.artIcon}>
-              {color === "red" ? "🛡️" : color === "blue" ? "🔷" : "⚔️"}
-            </Text>
+          {/* Art area — CardArt component */}
+          <View style={styles.artArea}>
+            <CardArt cardId={cardId} color={color} size="medium" />
           </View>
 
           {/* Card name */}

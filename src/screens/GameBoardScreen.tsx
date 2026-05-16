@@ -12,10 +12,12 @@ import {
 import { useGameRoom } from "../hooks/useGameRoom";
 import Card from "../components/Card";
 import cardsData from "../data/cards.json";
-import { playSound } from "../utils/sound";
+import { initSounds, playSound } from "../utils/sound";
 import { perf } from "../utils/perf";
 import { analytics } from "../utils/analytics";
 import { balance } from "../utils/balance";
+import ErrorOverlay from "../components/ErrorOverlay";
+import ReconnectToast from "../components/ReconnectToast";
 
 export default function GameBoardScreen({ navigation }: any) {
   const { room, playCard, discardCard } = useGameRoom();
@@ -24,6 +26,10 @@ export default function GameBoardScreen({ navigation }: any) {
   const [toast, setToast] = useState<string | null>(null);
   const [connectionError, setConnectionError] = useState<string | null>(null);
   const [flyingCard, setFlyingCard] = useState<any>(null);
+
+  // F8: Error states
+  const [errorType, setErrorType] = useState<'reconnecting' | 'server_down' | 'timeout' | 'error' | null>(null);
+  const [showReconnectToast, setShowReconnectToast] = useState(false);
 
   // Animation values
   const flyY = useRef(new Animated.Value(0)).current;
@@ -35,11 +41,36 @@ export default function GameBoardScreen({ navigation }: any) {
   const timerPulseAnim = useRef(new Animated.Value(1)).current;
   const turnFlashAnim = useRef(new Animated.Value(1)).current;
 
+  // F7: New animation values
+  const crackOpacity = useRef(new Animated.Value(0)).current;
+  const explosionScale = useRef(new Animated.Value(0)).current;
+  const explosionOpacity = useRef(new Animated.Value(0)).current;
+  const resourceGlow = useRef(new Animated.Value(0)).current;
+  const turnTransition = useRef(new Animated.Value(1)).current;
+
   // Previous values for change detection
   const prevOpponentWall = useRef<number | null>(null);
   const prevOpponentTower = useRef<number | null>(null);
   const prevIsMyTurn = useRef<boolean>(false);
   const prevWinnerId = useRef<string | null>(null);
+
+  // F7: Wall crack animation
+  function triggerWallCrack() {
+    crackOpacity.setValue(1);
+    Animated.sequence([
+      Animated.timing(crackOpacity, { toValue: 0, duration: 400, useNativeDriver: true, easing: Easing.out(Easing.ease) }),
+    ]).start();
+  }
+
+  // F7: Tower explosion animation
+  function triggerTowerExplosion() {
+    explosionScale.setValue(0);
+    explosionOpacity.setValue(1);
+    Animated.parallel([
+      Animated.timing(explosionScale, { toValue: 3, duration: 600, useNativeDriver: true, easing: Easing.out(Easing.ease) }),
+      Animated.timing(explosionOpacity, { toValue: 0, duration: 600, useNativeDriver: true }),
+    ]).start();
+  }
 
   // Listen to Colyseus state changes + broadcast messages
   useEffect(() => {
@@ -70,7 +101,11 @@ export default function GameBoardScreen({ navigation }: any) {
     }
 
     room.onError.once((code, message) => {
-      if (mounted) setConnectionError("⚠️ Connection lost. Reconnecting...");
+      if (mounted) {
+        setConnectionError("Connection lost. Reconnecting...");
+        setErrorType('reconnecting');
+        setShowReconnectToast(true);
+      }
     });
 
     room.onMessage("player_disconnected", () => {
@@ -167,11 +202,12 @@ export default function GameBoardScreen({ navigation }: any) {
   const timeElapsed = state ? Math.floor((Date.now() - state.turnStartTime) / 1000) : 0;
   const timeRemaining = Math.max(0, 30 - timeElapsed);
 
-  // Detect opponent damage
+  // F7: Detect opponent damage + crack + explosion
   useEffect(() => {
     if (!opponent) return;
     if (prevOpponentWall.current !== null && opponent.wall < prevOpponentWall.current) {
       triggerWallFlash();
+      triggerWallCrack();
       playSound("damage");
     }
     prevOpponentWall.current = opponent.wall;
@@ -180,8 +216,34 @@ export default function GameBoardScreen({ navigation }: any) {
       triggerTowerShake();
       playSound("damage");
     }
+    // F7: Tower explosion trigger
+    if (prevOpponentTower.current !== null && opponent.tower <= 0 && prevOpponentTower.current > 0) {
+      triggerTowerExplosion();
+    }
     prevOpponentTower.current = opponent.tower;
   }, [opponent?.wall, opponent?.tower]);
+
+  // F7: Resource glow when near victory
+  useEffect(() => {
+    if (!me) return;
+    const nearVictory = me.ore >= 120 || me.mana >= 120 || me.troops >= 120;
+    if (nearVictory) {
+      Animated.loop(
+        Animated.sequence([
+          Animated.timing(resourceGlow, { toValue: 1, duration: 600, useNativeDriver: true }),
+          Animated.timing(resourceGlow, { toValue: 0, duration: 600, useNativeDriver: true }),
+        ])
+      ).start();
+    } else {
+      resourceGlow.setValue(0);
+    }
+  }, [me?.ore, me?.mana, me?.troops]);
+
+  // F7: Turn transition smoothness
+  useEffect(() => {
+    turnTransition.setValue(0.5);
+    Animated.timing(turnTransition, { toValue: 1, duration: 500, useNativeDriver: true }).start();
+  }, [state?.currentPlayerId]);
 
   // Detect turn change
   useEffect(() => {
@@ -202,9 +264,15 @@ export default function GameBoardScreen({ navigation }: any) {
     prevWinnerId.current = state?.winnerId || null;
   }, [state?.winnerId]);
 
-  // Timer pulse
+  // Init sounds on mount
   useEffect(() => {
-    if (timeRemaining <= 5 && isMyTurn && !state?.winnerId) {
+    initSounds();
+  }, []);
+
+  // Timer pulse + tick sound
+  useEffect(() => {
+    if (timeRemaining <= 5 && timeRemaining > 0 && isMyTurn && !state?.winnerId) {
+      playSound("tick");
       Animated.loop(
         Animated.sequence([
           Animated.timing(timerPulseAnim, { toValue: 1.05, duration: 200, useNativeDriver: true, easing: Easing.inOut(Easing.ease) }),
@@ -292,12 +360,22 @@ export default function GameBoardScreen({ navigation }: any) {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Connection error banner */}
-      {connectionError && (
-        <View style={styles.errorBanner}>
-          <Text style={styles.errorText}>{connectionError}</Text>
-        </View>
-      )}
+      {/* F8: Error Overlay */}
+      <ErrorOverlay
+        type={errorType || 'error'}
+        message={connectionError || undefined}
+        visible={!!errorType}
+        onRetry={() => {
+          setErrorType(null);
+          setConnectionError(null);
+          setShowReconnectToast(false);
+          // Trigger reconnect by navigating back to lobby
+          navigation.navigate("Lobby");
+        }}
+      />
+
+      {/* F8: Reconnect Toast */}
+      <ReconnectToast message="Reconnecting to server..." visible={showReconnectToast} />
 
       {/* Toast */}
       {toast && (
@@ -327,6 +405,20 @@ export default function GameBoardScreen({ navigation }: any) {
         </Animated.View>
       )}
 
+      {/* F7: Tower Explosion Overlay */}
+      <Animated.View
+        style={[
+          styles.explosionOverlay,
+          {
+            opacity: explosionOpacity,
+            transform: [{ scale: explosionScale }],
+          },
+        ]}
+        pointerEvents="none"
+      >
+        <Text style={styles.explosionText}>💥</Text>
+      </Animated.View>
+
       {/* Opponent */}
       <View style={styles.opponentArea}>
         <Text style={styles.playerName}>
@@ -336,6 +428,7 @@ export default function GameBoardScreen({ navigation }: any) {
           <Stat label="Tower" value={opponent.tower} color="#F59E0B" shakeAnim={towerShakeAnim} />
           <View style={{ position: "relative" }}>
             <Stat label="Wall" value={opponent.wall} color="#3B82F6" />
+            {/* F7: Wall flash overlay */}
             <Animated.Text
               style={[
                 StyleSheet.absoluteFill,
@@ -345,6 +438,10 @@ export default function GameBoardScreen({ navigation }: any) {
             >
               {opponent.wall}
             </Animated.Text>
+            {/* F7: Crack overlay on wall */}
+            <Animated.View style={[styles.crackOverlay, { opacity: crackOpacity }]}>
+              <Text style={styles.crackText}>⚡</Text>
+            </Animated.View>
           </View>
           <Stat label="Ore" value={opponent.ore} color="#FCA5A5" />
           <Stat label="Mana" value={opponent.mana} color="#93C5FD" />
@@ -354,9 +451,10 @@ export default function GameBoardScreen({ navigation }: any) {
 
       {/* Turn Info */}
       <View style={styles.turnArea}>
-        <Animated.Text style={[styles.turnText, { opacity: turnFlashAnim }]}>
-          {isMyTurn ? "Your Turn" : "Opponent's Turn"}
-        </Animated.Text>
+        {/* F7: Turn transition smoothness */}
+        <Animated.View style={{ opacity: turnTransition }}>
+          <Text style={styles.turnText}>{isMyTurn ? "Your Turn" : "Opponent's Turn"}</Text>
+        </Animated.View>
         <Animated.View style={{ transform: [{ scale: timerPulseAnim }] }}>
           <Text style={[
             styles.timerText,
@@ -384,9 +482,25 @@ export default function GameBoardScreen({ navigation }: any) {
             scaleAnim={state.winnerId === sessionId ? victoryScaleAnim : undefined}
           />
           <Stat label="Wall" value={me.wall} color="#3B82F6" />
-          <Stat label="Ore" value={me.ore} color="#FCA5A5" />
-          <Stat label="Mana" value={me.mana} color="#93C5FD" />
-          <Stat label="Troops" value={me.troops} color="#6EE7B7" />
+          {/* F7: Resource glow on player resources */}
+          <View style={styles.statBox}>
+            <Animated.Text style={[styles.statValue, { color: "#FCA5A5", opacity: Animated.add(1, Animated.multiply(resourceGlow, 0.3)) }]}>
+              {me.ore}
+            </Animated.Text>
+            <Text style={styles.statLabel}>Ore</Text>
+          </View>
+          <View style={styles.statBox}>
+            <Animated.Text style={[styles.statValue, { color: "#93C5FD", opacity: Animated.add(1, Animated.multiply(resourceGlow, 0.3)) }]}>
+              {me.mana}
+            </Animated.Text>
+            <Text style={styles.statLabel}>Mana</Text>
+          </View>
+          <View style={styles.statBox}>
+            <Animated.Text style={[styles.statValue, { color: "#6EE7B7", opacity: Animated.add(1, Animated.multiply(resourceGlow, 0.3)) }]}>
+              {me.troops}
+            </Animated.Text>
+            <Text style={styles.statLabel}>Troops</Text>
+          </View>
         </View>
       </View>
 
@@ -545,6 +659,35 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     textAlign: "center",
     padding: 8,
+  },
+  // F7: Tower explosion overlay
+  explosionOverlay: {
+    position: "absolute",
+    top: "15%",
+    alignSelf: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 200,
+  },
+  explosionText: {
+    fontSize: 64,
+  },
+  // F7: Crack overlay
+  crackOverlay: {
+    position: "absolute",
+    top: -8,
+    left: 0,
+    right: 0,
+    alignItems: "center",
+    zIndex: 10,
+  },
+  crackText: {
+    fontSize: 24,
+    color: "#FFFFFF",
+    fontWeight: "700",
+    textShadowColor: "rgba(0,0,0,0.8)",
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
   },
   opponentArea: {
     backgroundColor: "#1E293B",

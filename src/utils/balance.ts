@@ -1,8 +1,11 @@
+import { markCardPlayed } from "./cardCollection";
+
 export const balance = {
   cardStats: {} as Record<string, { played: number; wins: number }>,
   recordPlay(cardId: string) {
     if (!this.cardStats[cardId]) this.cardStats[cardId] = { played: 0, wins: 0 };
     this.cardStats[cardId].played++;
+    markCardPlayed(cardId);
   },
   recordWin(cardId: string) {
     if (!this.cardStats[cardId]) this.cardStats[cardId] = { played: 1, wins: 0 };

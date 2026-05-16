@@ -1,4 +1,4 @@
-// LobbyScreen — Matchmaking queue
+// LobbyScreen — Matchmaking queue with timeout handling
 import React, { useState, useEffect } from "react";
 import {
   View,
@@ -10,13 +10,22 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useGameRoom } from "../hooks/useGameRoom";
+import ErrorOverlay from "../components/ErrorOverlay";
 
 export default function LobbyScreen({ navigation }: any) {
   const [username, setUsername] = useState("");
   const [searching, setSearching] = useState(false);
   const [elapsed, setElapsed] = useState(0);
-  const { room, connected, error } = useGameRoom();
 
+  // F8: Error state + retry count for exponential backoff
+  const [errorState, setErrorState] = useState<'timeout' | 'error' | null>(null);
+  const [retryCount, setRetryCount] = useState(0);
+
+  // F9: Use the new hook with status-based API
+  const { room, status, error, joinQueue, leave } = useGameRoom();
+  const connected = status === "connected" || status === "idle";
+
+  // Timer for elapsed time during search
   useEffect(() => {
     let timer: NodeJS.Timeout;
     if (searching) {
@@ -24,6 +33,18 @@ export default function LobbyScreen({ navigation }: any) {
     }
     return () => clearInterval(timer);
   }, [searching]);
+
+  // F8: Queue timeout detection with exponential backoff
+  useEffect(() => {
+    if (!searching) return;
+    const timeoutMs = 30000 * Math.pow(1.5, retryCount); // Exponential backoff
+    const timeout = setTimeout(() => {
+      setErrorState('timeout');
+      setSearching(false);
+      leave();
+    }, timeoutMs);
+    return () => clearTimeout(timeout);
+  }, [searching, retryCount]);
 
   // Auto-navigate to game board when 2 players are in the room
   useEffect(() => {
@@ -46,20 +67,59 @@ export default function LobbyScreen({ navigation }: any) {
     };
   }, [room, searching]);
 
-  const handleFindMatch = () => {
+  // F9: Handle connection error from hook
+  useEffect(() => {
+    if (status === "error" && error) {
+      setErrorState('error');
+      setSearching(false);
+    }
+  }, [status, error]);
+
+  const handleFindMatch = async () => {
     if (!username.trim()) return;
     setSearching(true);
     setElapsed(0);
+    setErrorState(null);
+    // F9: Use joinQueue from the new hook
+    await joinQueue(username.trim());
   };
 
   const handleCancel = () => {
     setSearching(false);
     setElapsed(0);
-    room?.leave();
+    setErrorState(null);
+    leave();
   };
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* F8: Error overlay for timeout */}
+      <ErrorOverlay
+        type="timeout"
+        visible={errorState === 'timeout'}
+        onRetry={() => {
+          setErrorState(null);
+          setRetryCount((c) => c + 1);
+          setSearching(true);
+          setElapsed(0);
+          joinQueue(username.trim());
+        }}
+      />
+
+      {/* F8: Error overlay for connection error */}
+      <ErrorOverlay
+        type="error"
+        message={error || undefined}
+        visible={errorState === 'error'}
+        onRetry={() => {
+          setErrorState(null);
+          setRetryCount((c) => c + 1);
+          setSearching(true);
+          setElapsed(0);
+          joinQueue(username.trim());
+        }}
+      />
+
       <TouchableOpacity
         style={styles.backButton}
         onPress={() => navigation.goBack()}

@@ -57,6 +57,18 @@ export default function HomeScreen({ navigation }: any) {
         >
           <Text style={styles.buttonText}>Play Online</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, styles.buttonSecondary]}
+          onPress={() => navigation.navigate("Collection")}
+        >
+          <Text style={styles.buttonText}>Card Collection</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, styles.buttonSecondary]}
+          onPress={() => navigation.navigate("Leaderboard")}
+        >
+          <Text style={styles.buttonText}>Leaderboard</Text>
+        </TouchableOpacity>
       </View>
 
       <Text style={styles.version}>v1.0.0</Text>
